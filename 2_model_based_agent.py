@@ -1,3 +1,5 @@
+#  Implement a model-based intelligent agent capable of navigating a grid environment with obstacles using internal state representation. 
+
 grid = [
     ['S','.','#'],
     ['#','.','#'],
@@ -7,9 +9,11 @@ grid = [
 pos = (0,0)
 visited = set()
 
+print("Starting Position :", pos)
+
 while(pos != (2,2)):
     visited.add(pos)
-    x,y=pos
+    x, y = pos
 
     if y + 1 < 3 and grid[x][y + 1] != '#' and (x,y + 1) not in visited:
         pos = (x,y + 1)

@@ -1,3 +1,5 @@
+# Implement Local Beam Search for The Traveling Salesman Problem (TSP).
+
 import random
 
 dist = [[0, 10, 15, 20],
@@ -6,20 +8,28 @@ dist = [[0, 10, 15, 20],
         [20, 25, 30, 0]]
 
 def cost(path):
-    return sum(dist[path[i]][path[i+1]] for i in range(len(path)-1)) + dist[path[-1]][path[0]]
+    total = 0
+    for i in range(len(path)):
+        total += dist[path[i]][path[(i + 1) % len(path)]]
+    return total
 
-n,k = 4,3
-beam = [random.sample(range(n),n) for _ in range(k)]
+n = 4
+k = 3
 
-for _ in range(100):
-    candidates = []
-    for p in beam:
-        for i in range (1,n):
-            q = p[:]
-            q[0],q[i] = q[i], q[0]
-            candidates.append(q)
-    beam = sorted(candidates , key = cost)[:k]
+beam = [random.sample(range(n), n) for _ in range(k)]
 
-best = min(beam,key = cost)
-print("Best Tour:",best + [best[0]])
-print("Minimum Distance: ",cost(best))
+for _ in range(50):
+    new_beam = []
+
+    for path in beam:
+        for i in range(1, n):
+            new_path = path[:]
+            new_path[0], new_path[i] = new_path[i], new_path[0]
+            new_beam.append(new_path)
+
+    beam = sorted(new_beam, key=cost)[:k]
+
+best = min(beam, key=cost)
+
+print("Best Tour:", [x + 1 for x in best + [best[0]]])
+print("Minimum Distance:", cost(best))

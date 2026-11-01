@@ -2,8 +2,8 @@ N = 8
 board = [-1] * N
 
 def safe(row, col):
-    for r in range(row):
-        if board[r] == col or abs(board[r] - col) == abs(r - row):
+    for i in range(row):
+        if board[i] == col or abs(board[i] - col) == row - i:
             return False
     return True
 
@@ -14,12 +14,17 @@ def solve(row):
     for col in range(N):
         if safe(row, col):
             board[row] = col
+
             if solve(row + 1):
                 return True
+
             board[row] = -1
+
     return False
 
 solve(0)
 
-for r in range(N):
-    print(" ".join("Q" if board[r] == c else "." for c in range(N)))
+for row in range(N):
+    for col in range(N):
+        print("Q" if board[row] == col else ".", end=" ")
+    print()
