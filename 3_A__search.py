@@ -1,68 +1,51 @@
-# Implement A* Search for 8 puzzle problem 
+start = (1, 2, 3,
+         4, 0, 6,
+         7, 5, 8)
 
-goal = [1, 2, 3,
+goal = (1, 2, 3,
         4, 5, 6,
-        7, 8, 0]
+        7, 8, 0)
 
-def heuristic(state):
-    count = 0
-    for i in range(9):
-        if state[i] != 0 and state[i] != goal[i]:
-            count += 1
-    return count
+def h(s):
+    return sum(s[i] != goal[i] and s[i] != 0 for i in range(9))
 
-def display(state):
-    print(state[:3])
-    print(state[3:6])
-    print(state[6:])
-    print()
+open_list = [(h(start), 0, start, [start])]
+visited = set()
+costs = {start: 0}
 
-def astar(start):
-    open_list = [(start, 0)]
-    visited = set()
+while open_list:
+    open_list.sort()
 
-    while open_list:
-        open_list.sort(key=lambda x: x[1] + heuristic(x[0]))
-        state, cost = open_list.pop(0)
+    f, g, s, path = open_list.pop(0)
 
-        if tuple(state) in visited:
+    if s == goal:   
+        print("Total Moves =", g)
+
+        for p in path:
+            print("\n", p[:3], "\n", p[3:6], "\n", p[6:])
+            
+        print("\nGoal Reached!")
+        break
+
+    if s in visited:
+        continue
+
+    visited.add(s)
+    z = s.index(0)
+
+    for d in [-3, 3, -1, 1]:
+        n = z + d
+
+        if n < 0 or n > 8 or (d == -1 and z % 3 == 0) or (d == 1 and z % 3 == 2):
             continue
 
-        print("State:")
-        display(state)
+        t = list(s)
+        t[z], t[n] = t[n], t[z]
+        t = tuple(t)
 
-        if state == goal:
-            print("Goal Reached!")
-            return
+        if t not in visited and g + 1 < costs.get(t, float('inf')):
+            costs[t] = g + 1
+            open_list.append((g + 1 + h(t), g + 1, t, path + [t]))
 
-        visited.add(tuple(state))
-
-        zero = state.index(0)
-
-        moves = []
-        if zero > 2:
-            moves.append(zero - 3)
-        if zero < 6:
-            moves.append(zero + 3)
-        if zero % 3 != 0:
-            moves.append(zero - 1)
-        if zero % 3 != 2:
-            moves.append(zero + 1)
-
-        for pos in moves:
-            new_state = state.copy()
-            new_state[zero], new_state[pos] = new_state[pos], new_state[zero]
-
-            if tuple(new_state) not in visited:
-                open_list.append((new_state, cost + 1))
-
-    print("No solution found!")
-
-start = [1, 2, 3,
-         4, 0, 6,
-         7, 5, 8]
-
-print("Initial State:")
-display(start)
-
-astar(start)
+else:
+    print("No solution found")
