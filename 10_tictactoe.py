@@ -1,9 +1,15 @@
+#  Develop a game-playing agent using the Minimax algorithm for optimal decision-making.
+
 def minimax(board, is_max):
-    if "X" in board and check(board, "X"): return -1
-    if "O" in board and check(board, "O"): return 1
-    if " " not in board: return 0
+    if "X" in board and check(board, "X"):
+        return -1
+    if "O" in board and check(board, "O"):
+        return 1
+    if " " not in board:
+        return 0
 
     scores = []
+    
     for i in range(9):
         if board[i] == " ":
             board[i] = "O" if is_max else "X"
@@ -49,3 +55,4 @@ while True:
     if " " not in board:
         print("Draw!")
         break
+

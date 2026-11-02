@@ -1,3 +1,5 @@
+#  Implement Backtracking search to solve the 8-Queens constraint satisfaction problem
+
 N = 8
 board = [-1] * N
 
