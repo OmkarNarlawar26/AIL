@@ -1,0 +1,197 @@
+1. SIMPLE REFLEX AGENT AND MODEL-BASED AGENT
+
+Q1. What is a Simple Reflex Agent?
+An agent that selects actions based only on the current percept using condition-action rules.
+
+Q2. Why is it called a Simple Reflex Agent?
+Because it makes decisions using only the current room's location and status, without maintaining memory of previous states.
+
+Q3. What is a Model-Based Agent?
+An agent that maintains an internal state of the environment to make decisions.
+
+
+2. TOWER OF HANOI
+
+Q1. What is Tower of Hanoi?
+Tower of Hanoi is a mathematical puzzle involving three rods and multiple disks of different sizes.
+
+Q2. What is the role of the auxiliary rod?
+It temporarily holds disks while transferring them from source to destination.
+
+Q3. What is the initial and goal state?
+Initial State: All disks are on the Source rod.
+Goal State: All disks are on the Destination rod.
+
+
+3. CHATBOT
+
+Q1. What is a chatbot?
+A chatbot is a computer program that communicates with users through text or voice.
+
+Q2. What is a rule-based chatbot?
+A chatbot that responds using predefined rules and conditions.
+
+Q3. What is pattern matching?
+Pattern matching is the process of identifying specific words or patterns in user input.
+
+
+4. LOCAL BEAM SEARCH – TRAVELLING SALESMAN PROBLEM (TSP)
+
+Q1. What is Local Beam Search?
+Local Beam Search is a search algorithm that maintains multiple states at a time and selects the best states for the next iteration.
+
+Q2. What is TSP?
+The Traveling Salesman Problem involves finding the shortest possible route that visits every city exactly once and returns to the starting city.
+
+Q3. What is the meaning of k?
+k represents the number of states maintained in the beam.
+
+Q4. What is a heuristic or cost function here?
+The cost function calculates the total travelling distance of a tour, including the return to the starting city.
+
+Q5. Why do we use random.sample()?
+To generate a random tour containing every city exactly once.
+
+Q6. Does Local Beam Search always guarantee the optimal solution?
+No. It is a heuristic search algorithm and may get stuck in a local optimum.
+
+
+5. BREADTH FIRST SEARCH (BFS)
+
+Working of BFS:
+1. Start from the initial position.
+2. Insert the starting position into the queue.
+3. Remove the first position from the queue.
+4. Check its neighbouring positions.
+5. Avoid obstacles and already visited positions.
+6. Add valid positions to the queue.
+7. Continue until the goal is reached.
+
+Q1. What is BFS?
+BFS (Breadth First Search) is an uninformed search algorithm that explores nodes level by level.
+
+Q2. Which data structure is used in BFS?
+Queue (FIFO).
+
+Q3. Is BFS optimal?
+Yes, when all movements have equal cost, BFS finds the shortest path.
+
+
+6. DEPTH FIRST SEARCH (DFS)
+
+How DFS works:
+1. Start from the initial position.
+2. Insert the starting position into the stack.
+3. Remove the last inserted position using pop().
+4. Check whether it is the goal.
+5. Add valid neighbouring positions to the stack.
+6. Continue until the goal is found or the stack becomes empty.
+
+Q1. What is DFS?
+DFS (Depth First Search) is an uninformed search algorithm that explores one path deeply before backtracking.
+
+Q2. Which data structure is used in DFS?
+Stack (LIFO).
+
+Q3. Is DFS guaranteed to find the shortest path?
+No. DFS finds a path, but it does not guarantee the shortest path.
+
+Q4. What is backtracking?
+When a path does not reach the goal, DFS returns and explores another possible path.
+
+
+7. WATER JUG PROBLEM
+
+Q1. What is the Water Jug Problem?
+It is a problem in Artificial Intelligence where we use two jugs of different capacities to measure a specific quantity of water.
+
+
+8. 8-QUEENS PROBLEM
+
+Q1. What is the 8-Queens problem?
+It is a constraint satisfaction problem in which 8 queens must be placed on an 8 × 8 chessboard without attacking each other.
+
+Q2. Which algorithm is used?
+Backtracking Search.
+
+Q3. What is backtracking?
+Backtracking is a technique that tries a possible solution and goes back if that solution leads to failure.
+
+Q4. What is a CSP?
+CSP stands for Constraint Satisfaction Problem. It consists of variables, domains and constraints.
+
+Q5. Why do we use the safe() function?
+To check whether placing a queen at a particular position is valid.
+
+Q6. What does board = [-1] * N mean?
+It creates a list of 8 elements, each initialized to -1.
+
+Q7. Why do we use abs()?
+To calculate the absolute difference between row and column positions for diagonal checking.
+
+Q8. How many queens are placed in each row?
+Exactly one queen in each row.
+
+Q9. What is the purpose of board[row] = -1?
+It removes the queen when backtracking occurs.
+
+
+9. MINIMAX ALGORITHM
+
+Q1. What is the Minimax algorithm?
+Minimax is a search algorithm used in two-player games to find the optimal move by considering the opponent's possible moves.
+
+Q2. What are MAX and MIN players?
+MAX tries to get the maximum score.
+MIN tries to get the minimum score.
+
+Q3. What is the purpose of Minimax?
+To select the best possible move assuming the opponent also plays optimally.
+
+Q4. What is a terminal state?
+A state where the game ends with a win, loss or draw.
+
+Q5. Where is Minimax used?
+Chess, Tic-Tac-Toe, Checkers and other two-player games.
+
+Q6. What is the limitation of Minimax?
+It explores many possible game states, so it can become slow for games with large search spaces.
+
+
+10. A* SEARCH – 8 PUZZLE PROBLEM
+
+How A* works:
+
+A* uses this formula:
+
+g(n) = Cost from initial state to current state.
+h(n) = Estimated cost to reach the goal.
+f(n) = Total estimated cost.
+
+In your code:
+
+heuristic() counts misplaced tiles.
+open_list stores possible states.
+visited stores already explored states.
+sort() selects the state with the lowest estimated cost.
+
+Q1. What is A* Search?
+A* is an informed search algorithm that finds a path using actual cost and estimated cost.
+
+Q2. What is the 8-Puzzle problem?
+It is a puzzle consisting of 8 numbered tiles and one empty space arranged in a 3 × 3 grid.
+
+Q3. What is a heuristic function?
+A function that estimates the cost of reaching the goal state.
+
+Q4. Which heuristic is used here?
+Misplaced tile heuristic.
+
+Q5. What is the role of the OPEN list?
+It stores states that are generated but not yet explored.
+
+Q6. What is the role of the visited set?
+It prevents already explored states from being processed again.
+
+Q7. Is A* optimal?
+Yes, when an admissible heuristic is used and the search is implemented correctly.
